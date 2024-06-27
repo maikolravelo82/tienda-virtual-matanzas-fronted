@@ -1,0 +1,22 @@
+<div class="content">
+    <div class="left">
+        <button class="btn btn-primary" id="button-header" type="button" routerLink="/home"> <img src="../../../assets/iconos/back-svgrepo-com.svg" class="icon-back"> Pagina Anterior</button>
+        <div class="card">
+           <img [src]="bookpreview.image_url" alt="">
+            <div class="card-body">
+               <Label class="card-tittle"> 550$</Label>
+               <div class="hr"></div>
+               <button type="button" class="btn btn-primary">Comprar</button>
+            </div>
+         </div>
+    </div>
+    <div class="right">
+        <pdf-viewer [src]=" this.bookpreview.preview_url"
+        [render-text]="false"
+        [original-size]="false"
+        style="width:60%; height: 70vh"
+        ></pdf-viewer>
+    </div>
+
+</div>
+

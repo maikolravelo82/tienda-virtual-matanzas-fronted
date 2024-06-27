@@ -1,0 +1,75 @@
+.content{
+    width:100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns:30% 70%;
+}
+.left{
+    background-color: #ECDEDE;
+    grid-template-rows: 20% 60% 20%;
+}
+.right{
+    display: grid;
+    justify-items: center;
+    background-color: #F1ECE5;
+    padding-top: 17vh;
+}
+#button-header{
+    background-color: transparent;
+    border: transparent;
+    color: darkgrey;
+    font-size: 22px;
+    height: 44px;
+    width: 80%;
+    margin-top: 20px;
+}
+.icon-back{
+    width: 26px;
+    margin-bottom: 6px;
+    }
+    .card{
+        position: relative;
+        left:45%;
+        top: 5%;
+        background-color: #F9F2F2;
+        margin:4%;
+        width: 70%;
+        height: 26rem;
+        border-radius: 5%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .card img{
+        margin: 13%;
+        width: 75%;
+        height: 75%;
+    }
+    .image-card{
+        margin: 15%;
+        width: 100%;
+        height: 100%;
+        background-image: url("/assets/img/canción\ invernal.jpg") !important;
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+    .card-body{
+        display: flex;
+        flex-direction: column;
+
+    }
+    .card-body button{
+      
+        align-self: center;
+        border-radius: 50px 50px 50px 50px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    .card-tittle{
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        margin-left: 3%;
+    }
+    .hr{
+        height: 3px;
+        background-color: black!important;
+        width: 100%;
+        margin-bottom: 2%;
+        margin-top: 4%;
+      }

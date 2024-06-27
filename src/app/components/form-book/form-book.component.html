@@ -1,0 +1,80 @@
+<div class="content">
+    <div class="left">
+        <button class="btn btn-primary" id="button-header" type="button" routerLink="/home"> <img src="../../../assets/iconos/back-svgrepo-com.svg" class="icon-back"> Pagina Anterior</button>
+        <div class="left-center">
+            <h5>Añadir nuevo libro</h5>
+            <img src="../../../assets/iconos/niño_pensando_-removebg-preview.png" style="width: 70%;">
+           
+        </div>
+        <button type="button"id="button-dark" class="btn btn-dark" (click)="submitform()">Aceptar</button>
+    </div>
+    <div class="right ">
+        <div class="header">
+            <button type="button" #buton1 id="header-buton1" (click)="formcontrol(1)"  class="btn btn-primary">Paso 1 </button>
+            <button type="button" #buton2 id="header-buton2"(click)="formcontrol(2)" class="btn btn-primary">Paso 2</button>
+            <button type="button" #buton3 id="header-buton3"(click)="formcontrol(3)" class="btn btn-primary">Paso 3</button>
+        </div>
+        <form class="body-form" [formGroup]="bookform">
+            <div *ngIf="currentsection===2" class="form_book_body">
+                <h4>Monetizacion</h4><br><br>
+                <h5>Insertar el precio del libro</h5>
+                
+                <input type="number" class="form-control input_text" id="formGroupExampleInput" placeholder="Introduce el costo del libro" formControlName="price"><br>
+                <h5 class="form-check-label" for="flexSwitchCheckChecked">Es gratis</h5>
+                <div class="form-check form-switch">
+                  
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" formControlName="is_free">
+                    
+                </div>
+            </div>
+            <div *ngIf="currentsection===1" class="form_book_body">
+                <h4>Datos sobre el libro</h4>
+                <br><br>
+                <h5>Insertar el nombre del libro</h5>
+                <input type="text" class="form-control input_text" id="formGroupExampleInput" placeholder="Introduce el nombre del libro" formControlName="name"><br>
+                <h5>Insertar el nombre del Autor</h5>
+                <div class="autocomplete">
+                    <input type="text" class="form-control input_text" formControlName="autor"  (input)="onInputChange($event)" placeholder="Introduce el nombre del autor">
+                    <div class="list-group" *ngIf="filteredOptions.length > 0">
+                      <button class="list-group-item list-group-item-action" *ngFor="let option of filteredOptions" (click)="selectOption(option.nombre)">
+                        {{option.nombre}} {{option.apellido}}
+                      </button>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="end-pos">
+                    <button type="button" class="btn btn-dark" (click)="toggleActive()">Añadir Autor</button>
+                  </div>
+                  
+                  <form *ngIf="autorform" [formGroup]="autorformulario">
+                    <h5>Introduce los datos del Autor</h5>
+                    <div class="row">
+                        <div class="col">
+                          <input type="text" class="form-control" placeholder="Nombre" aria-label="First name" formControlName="nombre">
+                        </div>
+                        <div class="col">
+                          <input type="text" class="form-control" placeholder="Apellido" aria-label="Last name" formControlName="apellido">
+                        </div>
+                      </div>
+                      <br>
+                      <div class="end-pos"><button type="button" class="btn btn-dark" (click)="autorsubmit()">Aceptar</button></div>
+                      
+                  </form>
+            </div>
+            <div *ngIf="currentsection===3" class="form_book_body">
+                <h4>Arcivos relacionados al libro</h4>
+                <br>
+                <br>
+                <h5>Insertar pdf File</h5>
+                <br>
+                <input type="file" class="form-control input_text" id="inputGroupFile01" formControlName="book_file" (change)="onFileSelected($event)">
+                <br>
+                <h5>Insertar Poratda del libro</h5>
+                <br>
+                <input type="file" class="form-control input_text" id="inputGroupFile02"formControlName="image" (change)="onFileSelectedimg($event)">
+                <br>
+            </div>
+        </form>
+    </div>
+
+</div>

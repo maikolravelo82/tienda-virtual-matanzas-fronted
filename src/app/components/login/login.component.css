@@ -1,0 +1,115 @@
+.body{
+    display: grid;
+background-color: #D9CAB9;
+height: 100vh;
+grid-template-columns: 45% 55%;
+grid-template-rows: 100%;
+transition: 0.5s ease-in-out;
+}
+
+.registrarse{
+    background-color: #F5C6C6;
+    border: #F5C6C6;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+    color: black;
+}
+input{
+    width: 40%;
+}
+.right{
+    display: none;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 40% 60%;
+    align-items: center;
+justify-items: center;
+transition: 0.5s ease-in-out;
+}
+.form-input{
+    width: 60%;
+    height: 100%;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+.buton-center{
+    margin-top: 10%;
+    text-align: center;
+}
+h3{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 5%;
+}
+.tilte{
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 50% 50%;
+    justify-items: center;
+   
+}
+.imagen-libros{
+    background-image: url("/assets/img/back-removebg-preview.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 60%;
+}
+.left{
+    display: none;
+    width: 100%;
+    height: 100%;
+    align-items: end;
+justify-items: center;
+grid-template-rows: 20% 80%;
+transition: 0.5s ease-in-out;
+}
+.left h3{
+   margin-bottom: 1%;
+}
+#sesion{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transition: box-shadow 0.3s ease-in-out; }
+
+    
+.social-icon{
+    margin-left: 3px;
+}
+.ghost{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    align-items: end;
+justify-items: center;
+grid-template-rows: 20% 80%;
+transition: 0.5s ease-in-out;
+}
+.imagen-bibliotecaria{
+    background-image: url("/assets/img/library.png");
+    background-size:contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100%;
+    height: 80%;
+}
+.ghost h5{
+    margin-bottom: 1%;
+}
+.ghost-right{
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-rows: 40% 60%;
+    align-items: center;
+justify-items: center;
+transition: 0.5s ease-in-out;
+}
+#visible{
+    display: grid!important;
+}
+#no-visible{
+    display: none;
+}
+form{
+    width: 100%;
+    align-self: start;
+}

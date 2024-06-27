@@ -1,0 +1,89 @@
+<div class="card body " [style.gridTemplateColumns]="gridTemplateColumns" >
+    <div class="right" [style.display]="!showDiv3And4 ? 'none' : 'grid'" [style.marginLeft]="!showDiv3And4 ? '100%' : '0'">
+        <div class="tilte">
+            <h3>Crear cuenta</h3>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/edicionesmatanzas/" class="social-icon facebook-icon">
+                 <img src="/assets/iconos/sociales/facebook-svgrepo-com.svg" width="40px">
+                </a>
+                <a href=":https://x.com/edicionesmtz" class="social-icon twiter-icon">
+                  <img src="/assets/iconos/sociales/twitter-round-svgrepo-com.svg" width="34px" style="margin-right: 6px;">
+                </a>
+                <a href="https://t.me/edicionesmatanzas" class="social-icon instagram-icon">
+                  <img src="/assets/iconos/sociales/instagram-round-svgrepo-com%20(1).svg" width="34px">
+                </a>
+              
+              </div>
+        </div>
+    <form  (ngSubmit)="onSubmit()" [formGroup]="crearuser"  >
+    <div class="form-input ">
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1" formControlName="username">
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1" formControlName="password">
+      </div>
+      <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Correo" aria-label="Correo" aria-describedby="basic-addon1" formControlName="email">
+      </div>
+      <div class=" mb-3 buton-center">
+        <button type="submit" class="btn btn-primary registrarse">Registrarse</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="left card "   [style.display]="!showDiv3And4 ? 'none' : 'grid'" [style.marginLeft]="!showDiv3And4 ? '100%' : '0'" >
+  <h3>Bienvenido</h3>
+  <div style="width: 100%; height: 100%; text-align: center;" >
+    <div class="imagen-libros">
+   
+    </div>
+    <button type="button" class="btn btn-light" id="sesion" (click)="movimientodrecha()">Inicar Sesion</button>
+  </div>
+ 
+</div>
+<div class="ghost card" [style.display]="showDiv3And4 ? 'none' : 'grid'" [style.marginLeft]="showDiv3And4 ? '100%' : '0'" >
+  <h3> Hola lector!</h3>
+  <div style="width: 100%; height: 100%; text-align: center;">
+    <div class="imagen-bibliotecaria">
+   
+    </div>
+    <button type="button" class="btn btn-primary registrarse" (click)="movimientodrecha()">Registrarse</button>
+  </div>
+
+</div>
+<div class="ghost-right" [style.display]="showDiv3And4 ? 'none' : 'grid'" [style.marginLeft]="showDiv3And4 ? '100%' : '0'">
+  <div class="tilte">
+    <h3>Feria Digital Vigia</h3>
+    <div class="social-icons">
+        <a href="https://www.facebook.com/edicionesmatanzas/" class="social-icon facebook-icon">
+         <img src="/assets/iconos/sociales/facebook-svgrepo-com.svg" width="40px">
+        </a>
+        <a href="https://x.com/edicionesmtz" class="social-icon twiter-icon">
+          <img src="/assets/iconos/sociales/twitter-round-svgrepo-com.svg" width="34px" style="margin-right: 6px;">
+        </a>
+        <a href="https://t.me/edicionesmatanzas" class="social-icon instagram-icon">
+          <img src="/assets/iconos/sociales/instagram-round-svgrepo-com%20(1).svg" width="34px">
+        </a>
+      
+      </div>
+</div>
+<form (ngSubmit)="onSubmituser()" [formGroup]="loginuser" >
+<div class="form-input">
+<div class="input-group mb-3">
+<input type="text" class="form-control" placeholder="Usuario" aria-label="Username" aria-describedby="basic-addon1" formControlName="username">
+</div>
+<div class="input-group mb-3">
+<input type="text" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon1" formControlName="password">
+</div>
+
+<div class=" mb-3 buton-center" >
+<button type="submit" class="btn btn-light" id="sesion" >Iniciar Sesion </button>
+
+</div>
+</div>
+</form>
+</div>
+
+</div>
+

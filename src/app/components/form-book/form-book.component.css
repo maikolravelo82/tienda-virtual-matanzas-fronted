@@ -1,0 +1,134 @@
+.content{
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 25% 74%;
+    grid-gap: 1%;
+}
+
+.icon-back{
+width: 26px;
+margin-bottom: 6px;
+}
+#button-header{
+    background-color: transparent;
+    border: transparent;
+    color: darkgrey;
+    font-size: 22px;
+    height: 44px;
+    width: 80%;
+    margin-top: 20px;
+}
+#button-dark{
+    justify-self: center;
+    align-self: center;
+    height: 40px;
+    width: 40%;
+}
+.left{
+    height: 100%;
+    background-color: #ECDEDE;
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+    border-radius: 2%;
+}
+.left-center{
+    display: grid;
+    justify-items: center;
+}
+.right {
+    display: grid;
+    grid-template-rows: 9vh 90vh;
+    grid-gap: 1%;
+}
+.header{
+    margin-top: 1vh;
+}
+#header-buton1{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+    color: black;
+    background-color: #F4D0D0;
+    border: transparent;
+    width: 140px;
+    height: 42px;
+    position: relative;
+    left: 0px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    transition: z-index 0.5s ease;
+    font-weight: 600;
+}
+#header-buton2{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+    font-weight: 600;
+    color: black;
+    height: 42px;
+    background-color: #F4B0B0;
+    border: transparent;
+    width: 140px;
+    position: relative;
+    left: -15px;
+    top: 5px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+    z-index: 2;
+    transition: z-index 0.5s ease;
+}
+#header-buton3{
+    font-weight: 600;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: larger;
+    color: black;
+    height: 42px;
+    background-color: #F49A9A;
+    border: transparent;
+    width: 140px;
+    position: relative;
+    left: -30px;
+    top: 10px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    transition: z-index 0.3s ease;
+}
+.body-form{
+border-radius: 2%;
+background-color: #F1ECE5;
+}
+.form_book_body{
+    padding: 5vh;
+    padding-top:9vh ;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.input_text{
+    width: 60%;
+
+}
+.list-group-item{
+    width: 60%;
+max-height: 392px;
+ overflow:auto;
+}
+.end-pos{
+    display: grid;
+    justify-items: end;
+ 
+}
+.btn-dark{
+    width: 120px;
+}
+.form-check.form-switch .form-check-input:checked {
+    box-shadow: 0 0 5px 2px rgba(0, 128, 0, 0.5); 
+    background-color: green;
+    border-color: green;
+    height: 25px;
+    width: 40px;
+  }
+  .form-check.form-switch .form-check-input{
+    height: 25px;
+    width: 40px;
+  }
+  .form-check.form-switch .form-check-input:hover{
+    box-shadow: 0 0 5px 2px rgba(0, 128, 0, 0.5); 
+  }
+ 

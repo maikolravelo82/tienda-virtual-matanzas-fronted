@@ -1,0 +1,146 @@
+
+<nav class="nav-var">
+   <div class="logo">
+   </div>
+   <div></div>
+   <div class="search">
+      <div class="input-group mb-3 ">
+        <span class="search-icon input-group-text"></span>
+         <input type="text" class="form-control "  (input)="onInputChange($event)" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1" style="border-left: none; height: 2.5rem; margin-top: 0.4rem;">
+       </div>
+   </div>
+   <div>
+
+   </div>
+   <div class="icons">
+      <div class="car-icon">
+      </div>
+      <div class="dowland-icon" ></div>
+      <div class="avatar-icon" (click)="navigateToLogin()"></div>
+   </div>
+</nav>
+<div class="cartel">
+   <div class="cartel-header">
+      <div class="left">
+         <button type="button" class="btn btn-primary bton-letrero">Catalogos</button>
+         <button type="button" class="btn btn-primary bton-letrero">Noticias</button>
+      </div>
+      <div class="center">
+         <button type="button" class="btn btn-primary bton-letrero">Mi Biblioteca</button>
+      </div>
+      <div class="right">
+         <button type="button" class="btn btn-primary bton-letrero">Contactanos</button>
+         <button type="button" class="btn btn-primary bton-letrero" routerLink="/about">Sobre Nosotros</button>
+      </div>
+     
+   </div>
+  
+</div>
+<div class="cartel-body">
+   <div class="leterero">
+      <h1>Feria Digital Vigia</h1>
+   </div>
+</div>
+<div class="libros-list" *ngIf="books.length > 0">
+      <div class="card" *ngFor="let book of filteredOptions" (click)="onBookClick(book.slug)">
+         <img [src]="book.image_url" alt="">
+         <div class="card-body">
+            <Label class="card-tittle"> {{book.price}}$</Label>
+            <div class="hr"></div>
+            <button type="button" class="btn btn-primary">Sobre...</button>
+        </div>
+    </div>
+   
+</div>
+<div class="oferta-especial">
+   <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
+   
+      <div class="carousel-inner card" id="border-corusel">
+        <div class="carousel-item active">
+            <div class="ofertaespecial-1">
+               <div>
+                  <h2 class="tilte" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                     Inauguración de la Feria Internacional del Libro de La Habana
+                  </h2>
+                  <label class="art-body">
+                     La 30ª edición de la Feria Internacional del Libro de La Habana se llevó a cabo en el 2024. El evento reunió a escritores, editores y amantes de la literatura de todo el mundo para celebrar la cultura y la lectura.
+                  </label>
+                  
+               </div>
+               <div class="oferta-especial-right">
+                  <div >
+                     <img src="../../../assets/img/noticias/feria del libro.jpeg" class="ofertaespecialimg">
+                  </div>
+               </div>
+              
+            </div>
+        </div>
+        <div class="carousel-item ">
+         <div class="ofertaespecial-1">
+            <div>
+               <h2 class="tilte" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                  Cuba avanza en la producción de vacunas contra la COVID-19
+               </h2>
+               <label class="art-body">
+                  Cuba ha desarrollado sus propias vacunas contra la COVID-19, como Abdala y Soberana. El país ha estado administrando estas vacunas a su población y también ha exportado dosis a otros países.
+
+               </label>
+               
+            </div>
+            <div class="oferta-especial-right">
+               <div >
+                  <img src="../../../assets/img/noticias/bacuna.jpeg" class="ofertaespecialimg">
+               </div>
+            </div>
+           
+         </div>
+        </div>
+        <div class="carousel-item">
+         <div class="ofertaespecial-1">
+            <div>
+               <h2 class="tilte" style="font-family: Georgia, 'Times New Roman', Times, serif;">
+                  Celebración del Día de la Rebeldía Nacional en Santiago de Cuba
+               </h2>
+               <label class="art-body">
+                  El 26 de julio de 2024, se conmemoró el Día de la Rebeldía Nacional en Santiago de Cuba. Este día marca el aniversario del asalto al Cuartel Moncada en 1953, un evento clave en la lucha revolucionaria cubana.
+               </label>
+            </div>
+            <div class="oferta-especial-right">
+               <div >
+                  <img src="../../../assets/img/noticias/festival.jpeg" class="ofertaespecialimg">
+               </div>
+            </div>
+           
+         </div>
+        </div>
+      </div>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next" id="butonnext">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+</div>
+<div class="footer-card">
+   <div class="social-icons">
+     <a href="https://www.facebook.com/edicionesmatanzas/" class="social-icon facebook-icon">
+      <img src="/assets/iconos/sociales/facebook-svgrepo-com.svg" width="40px">
+     </a>
+     <a href="https://x.com/edicionesmtz" class="social-icon twiter-icon">
+       <img src="/assets/iconos/sociales/twitter-round-svgrepo-com.svg" width="34px">
+     </a>
+     <a href=" https://www.instagram.com/edicionesmatanzas/" class="social-icon instagram-icon">
+       <img src="/assets/iconos/sociales/instagram-round-svgrepo-com%20(1).svg" width="34px">
+     </a>
+     <a href="https://t.me/edicionesmatanzas" class="social-icon telegram-icon">
+      <img src="/assets/iconos/sociales/telegram-svgrepo-com.svg" width="34px">
+    </a>
+    <a href="edicionesmatanzas@atenas.cult.cu" class="social-icon whatsapp-icon">
+      <img src="/assets/iconos/sociales/whatsapp-whats-app-svgrepo-com.svg" width="34px">
+    </a>
+   </div>
+ </div>
+
+
+ 
+
+ 
