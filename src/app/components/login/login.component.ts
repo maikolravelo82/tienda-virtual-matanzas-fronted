@@ -165,8 +165,13 @@ const userExists = dataexist.some((user: { username: string }) => user.username 
           confirmButtonText: 'Aceptar'
         }).then((result) => {
           if (result.isConfirmed) {
+          
+            /* Aqui va tu usuario y tu contraseña del super user */
+            if(this.user.username==="totoro"&&this.user.password==="Lol.1118"){
+              this.router.navigate(['/gestionarbooks'])
+            }
             // Reiniciar los valores del formulario
-            this.router.navigate(['/home'])
+           
           }
         });
       }
