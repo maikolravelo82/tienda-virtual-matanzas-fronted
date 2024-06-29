@@ -17,14 +17,12 @@
         <form class="body-form" [formGroup]="bookform">
             <div *ngIf="currentsection===2" class="form_book_body">
                 <h4>Monetizacion</h4><br><br>
-                <h5>Insertar el precio del libro</h5>
+                <h5 >Insertar el precio del libro</h5>
                 
-                <input type="number" class="form-control input_text" id="formGroupExampleInput" placeholder="Introduce el costo del libro" formControlName="price"><br>
+                <input type="number" class="form-control input_text" id="formGroupExampleInput" placeholder="Introduce el costo del libro" formControlName="price" [disabled]="bookprev.is_free"><br>
                 <h5 class="form-check-label" for="flexSwitchCheckChecked">Es gratis</h5>
                 <div class="form-check form-switch">
-                  
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" formControlName="is_free">
-                    
+                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" formControlName="is_free" (change)="onCheckboxChange()">
                 </div>
             </div>
             <div *ngIf="currentsection===1" class="form_book_body">
@@ -34,12 +32,12 @@
                 <input type="text" class="form-control input_text" id="formGroupExampleInput" placeholder="Introduce el nombre del libro" formControlName="name"><br>
                 <h5>Insertar el nombre del Autor</h5>
                 <div class="autocomplete">
-                    <input type="text" class="form-control input_text" formControlName="autor"  (input)="onInputChange($event)" placeholder="Introduce el nombre del autor">
-                    <div class="list-group" *ngIf="filteredOptions.length > 0">
-                      <button class="list-group-item list-group-item-action" *ngFor="let option of filteredOptions" (click)="selectOption(option.nombre)">
-                        {{option.nombre}} {{option.apellido}}
-                      </button>
-                    </div>
+                
+                <ng-select [items]="filteredOptions" 
+                           bindLabel="nombre" 
+                           bindValue="nombre" 
+                           formControlName="autor">
+                </ng-select>
                   </div>
                   <br>
                   <div class="end-pos">

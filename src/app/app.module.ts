@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormBookComponent } from './components/form-book/form-book.component';
 import { AboutComponent } from './components/about/about.component';
 import { GestionarbooksComponent } from './components/gestionarbooks/gestionarbooks.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,9 @@ import { GestionarbooksComponent } from './components/gestionarbooks/gestionarbo
     PdfViewerModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    NgSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,67 +1,69 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 import Swal from 'sweetalert2';
-interface autor{
-  "nombre": string,
-  "apellido": string,
-  "slug": string
-}
-interface book {
-    "name": string,
-    "autor": string,
-    "price": number,
-    "is_free": boolean,
-    "book_file": string,
-    "preview_book": string,
-    "slug": string,
-    "image":string,
-    "merchant_uuid": string
-}
-interface token{
-  token:string
-}
+import { BookService } from 'src/app/servicios/Services';
+import { autor, usersend } from 'src/app/interface/Interface';
+import { token } from 'src/app/interface/Interface';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-form-book',
   templateUrl: './form-book.component.html',
   styleUrls: ['./form-book.component.css']
 })
 export class FormBookComponent {
-  constructor( private http:HttpClient, private formbuilder:FormBuilder){
+  constructor( private http:HttpClient, private formbuilder:FormBuilder,private servicio:BookService,private router:Router){
     this.filteredOptions=[];
     console.log(this.filteredOptions.length)
     this.http.get("http://127.0.0.1:8000/authors/").subscribe(data=>{
       const autordata = Object.values(data)
       this.options=autordata;
    console.log(this.options)
+   const filteredOptions = new Map();
+   this.options.forEach(item => {
+     const key = `${item.nombre}-${item.apellido}`;
+     if (!filteredOptions.has(key)) {
+      filteredOptions.set(key, item);
+     }
+   });
+   
+   // Convertir el objeto en un array
+   this.filteredOptions = Array.from(filteredOptions.values());
     });
     this.autorformulario= this.formbuilder.group({
      nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
       apellido: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
     }),
     this.bookform=this.formbuilder.group({
-      is_free:[''],
+      is_free:[false],
       name:['',[Validators.required]],
       autor:['',[Validators.required]],
       image:['',[Validators.required]],
       book_file:['',[Validators.required]],
       price:['',[Validators.required]]
     })
+    this.bookprev=this.bookform.value
   }
   @ViewChild('buton1') buton1!: ElementRef;
   @ViewChild('buton2') buton2!: ElementRef;
   @ViewChild('buton3') buton3!: ElementRef;
+
+  selectedCar!: number;
+
   book_file:string="";
   preview_book:string="";
   currentsection=1;
+  is_free_check=false;
  uniqueId: string = uuidv4();
   selectedFile!: File;
   selectedImg!:File;
   autorform= false;
   bookform:FormGroup;
   autorformulario:FormGroup;
-  options:any[]=[];
+  options:autor[]=[];
+  bookprev:any;
   filteredOptions:autor[] = [];
   selectedValue: autor={
     "nombre": "",
@@ -72,9 +74,22 @@ slug:string="asdasd"
 tokenuser:token={
   token:"",
 }
-convertirObjetoAArreglo(){
+onCheckboxChange() {
+  const priceControl = this.bookform.get('price');
+  const isFreeControl = this.bookform.get('is_free') as AbstractControl<boolean>;
 
+  if (priceControl && isFreeControl) {
+    if (isFreeControl.value) {
+      priceControl.setValue(0);
+      this.is_free_check=false;
+    } else {
+      priceControl.enable();
+     this.is_free_check=true;
+ 
+    }
+  }
 }
+
   autorsubmit(){
     if(this.autorformulario.valid){
       const formautordata=this.autorformulario.value
@@ -91,7 +106,7 @@ convertirObjetoAArreglo(){
           'Content-Type': 'application/json'
         })
       }).subscribe(data=>{
-        console.log(data)
+        this.toggleActive()
       })
     }
     else{
@@ -215,11 +230,10 @@ convertirObjetoAArreglo(){
   }
   submitform(){
     if (this.bookform.valid) {
-      const user = {
-        "username": "totoro",
-        "password": "Lol.1118"
-      };
-  
+      const ussuario = localStorage.getItem('user');
+      if (ussuario !== null) {
+        const user:usersend = JSON.parse(ussuario);
+          console.log(user)
       // Obtener el token de autenticación
       this.http.post<any>("http://127.0.0.1:8000/api-token-auth", user)
         .subscribe(data => {
@@ -237,12 +251,13 @@ convertirObjetoAArreglo(){
           // Create the book form data
           const bookprev = this.bookform.value;
           console.log(bookprev.is_free)
-          if(bookprev.is_free==='Must be a valid boolean'){
-            console.log("funciono")
+        if(bookprev.is_free==='Must be a valid boolean'){
+          bookprev.is_free=true
           }
           else{
            bookprev.is_free=false
           }
+        
           console.log(bookprev.name);
           console.log(this.selectedValue.nombre);
           const bookFormData = new FormData();
@@ -259,22 +274,33 @@ convertirObjetoAArreglo(){
           // Send the HTTP POST request with the headers
           this.http.post("http://127.0.0.1:8000/books/", bookFormData, httpOptions)
             .subscribe(data => {
-              console.log(data);
+              Swal.fire({
+                title: 'Datos Correctos!',
+                text: 'El Libro ha sido creado',
+                icon: 'success',
+                confirmButtonText: 'Aceptar'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  /* Aqui va tu usuario y tu contraseña del super user */
+                    this.router.navigate(['/gestionarbooks'])
+                  // Reiniciar los valores del formulario
+                 
+                }
+              });
             });
         });
     }
+  } 
     else {
       this.showValidationErrorformbook();
     }
   
   }
   submitPdf(){
-    /*Aqui pon el superuser manual*/
-    const user = {
-      "username": "totoro",
-      "password": "Lol.1118"
-    };
-    
+   
+    const ussuario = localStorage.getItem('user');
+    if (ussuario !== null) {
+      const user:usersend = JSON.parse(ussuario);
     let datatoken = "";
     
     // Obtener el token de autenticación
@@ -317,6 +343,7 @@ convertirObjetoAArreglo(){
             }
           );
       });
-    }    
+    }   
+  } 
   }
 

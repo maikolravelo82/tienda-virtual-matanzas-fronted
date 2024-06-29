@@ -2,16 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { usuario } from 'src/app/interface/Interface';
+import { BookService } from 'src/app/servicios/Services';
 import Swal from 'sweetalert2';
-interface usuario{
-    "username": String,
-    "email": String,
-    "password": String,
-}
-interface usersend{
-  "username": String,
-  "password": String,
-}
 
 @Component({
   selector: 'app-login',
@@ -28,7 +21,7 @@ user:usuario={
     "email": "",
     "password": "",
 }
-  constructor(private formBuilder: FormBuilder, private http:HttpClient, private router:Router){
+  constructor(private formBuilder: FormBuilder, private http:HttpClient, private router:Router, private servicio:BookService){
     this.crearuser=this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32), ]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
@@ -42,6 +35,7 @@ user:usuario={
   onSubmit() {
     if (this.crearuser.valid) {
      this.user= this.crearuser.value;
+
      const jsonData = JSON.stringify(this.user);
       // Aquí puedes procesar el formulario
       console.log(jsonData)
@@ -158,6 +152,9 @@ user:usuario={
 const userExists = dataexist.some((user: { username: string }) => user.username === this.user.username);
       // Aquí puedes procesar el formulario
       if(userExists){
+        console.log(this.user)
+        this.servicio.setuser(this.user)
+        localStorage.setItem('user', JSON.stringify(this.user));
         Swal.fire({
           title: 'Datos Correctos!',
           text: 'El suario es correcto',
@@ -165,11 +162,8 @@ const userExists = dataexist.some((user: { username: string }) => user.username 
           confirmButtonText: 'Aceptar'
         }).then((result) => {
           if (result.isConfirmed) {
-          
             /* Aqui va tu usuario y tu contraseña del super user */
-            if(this.user.username==="totoro"&&this.user.password==="Lol.1118"){
               this.router.navigate(['/gestionarbooks'])
-            }
             // Reiniciar los valores del formulario
            
           }
