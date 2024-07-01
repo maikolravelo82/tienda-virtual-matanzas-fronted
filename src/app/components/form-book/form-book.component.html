@@ -24,6 +24,9 @@
                 <div class="form-check form-switch">
                     <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" formControlName="is_free" (change)="onCheckboxChange()">
                 </div>
+                <br>
+                <h5 >Insertar descripciòn del libro</h5>
+                <textarea class="form-control" aria-label="With textarea" formControlName="descripcion"></textarea>
             </div>
             <div *ngIf="currentsection===1" class="form_book_body">
                 <h4>Datos sobre el libro</h4>

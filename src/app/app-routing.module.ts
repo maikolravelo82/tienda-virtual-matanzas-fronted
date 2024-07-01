@@ -6,6 +6,9 @@ import { PrewiewComponent } from './components/prewiew/prewiew.component';
 import { FormBookComponent } from './components/form-book/form-book.component';
 import { AboutComponent } from './components/about/about.component';
 import { GestionarbooksComponent } from './components/gestionarbooks/gestionarbooks.component';
+import { NoticiasComponent } from './components/noticias/noticias.component';
+import { NoticiaFormComponent } from './components/noticia-form/noticia-form.component';
+import { BibliotecaComponent } from './components/biblioteca/biblioteca.component';
 
 const routes: Routes = [
   {
@@ -36,6 +39,18 @@ const routes: Routes = [
   {
     path:'gestionarbooks',
     component:GestionarbooksComponent
+  },
+  {
+    path:'noticias',
+    component:NoticiasComponent
+  },
+  {
+    path:'noticia-form',
+    component:NoticiaFormComponent
+  },
+  {
+    path:'biblioteca',
+    component:BibliotecaComponent
   }
 ];
 

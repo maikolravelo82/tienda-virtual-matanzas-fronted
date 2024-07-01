@@ -27,4 +27,14 @@ export class BookService {
   getuser(): usersend{
     return this.user;
   }
+ clearLocalStorageAfterTime(timeInMinutes:number) {
+    // Calcular el tiempo en milisegundos
+    const timeInMs = timeInMinutes * 60 * 1000;
+  
+    // Establecer un temporizador para eliminar el Local Storage
+    setTimeout(() => {
+      localStorage.clear();
+      console.log('Local Storage cleared after ' + timeInMinutes + ' minutes.');
+    }, timeInMs);
+  }
 }

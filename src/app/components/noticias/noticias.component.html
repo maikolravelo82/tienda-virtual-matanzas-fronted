@@ -1,11 +1,11 @@
 <app-nav-var></app-nav-var>
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-3">
-      <h2 type="button" routerLink="/home">Libros</h2>
-      <button class="btn btn-dark " routerLink="/form-book">
+      <h2 type="button" routerLink="/home">Noticiass</h2>
+      <button class="btn btn-dark " routerLink="/noticia-form">
         <svg class="mr-2" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>Agregar Libro
+          </svg>Agregar Noticia
       </button>
     </div>
   
@@ -14,23 +14,21 @@
         <tr>
           <th>Título</th>
           <th>Autor</th>
-          <th>Precio</th>
           <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let book of books">
-          <td>{{ book.name }}</td>
-          <td>{{ book.autor }}</td>
-          <td>{{ book.price | currency:'USD':'symbol':'1.2-2' }}</td>
+        <tr *ngFor="let noticia of noticias">
+          <td>{{ noticia.titulo }}</td>
+          <td>{{ noticia.texto }}</td>
           <td>
-            <button class="btn btn-primary btn-sm mr-2 buttonaction" (click)="editBook(book.slug)">
+            <button class="btn btn-primary btn-sm mr-2 buttonaction" (click)="editnoticia(noticia.slug)">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M11 4H4C3.44772 4 3 4.44772 3 5V20C3 20.5523 3.44772 21 4 21H19C19.5523 21 20 20.5523 20 20V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M18.5 2.5C18.8978 2.10219 19.4374 1.94398 19.9571 2.05998C20.4767 2.17599 20.8233 2.52263 20.9393 2.94221C21.0554 3.36179 20.9372 3.80137 20.6393 4.10048L11 14L7 15L8 11L18.5 2.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                   </svg>
             </button>
-            <button class="btn btn-danger btn-sm buttonaction" (click)="deleteBook(book.slug)">
+            <button class="btn btn-danger btn-sm buttonaction" (click)="deletenoticia(noticia.slug)">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M3 6H5H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     <path d="M8 6V4C8 3.46957 8.21071 2.96086 8.58579 2.58579C8.96086 2.21071 9.46957 2 10 2H14C14.5304 2 15.0391 2.21071 15.4142 2.58579C15.7893 2.96086 16 3.46957 16 4V6M19 6V20C19 20.5304 18.7893 21.0391 18.4142 21.4142C18.0391 21.7893 17.5304 22 17 22H7C6.46957 22 5.96086 21.7893 5.58579 21.4142C5.21071 21.0391 5 20.5304 5 20V6H19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />

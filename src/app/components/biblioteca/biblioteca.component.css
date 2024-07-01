@@ -101,7 +101,8 @@ margin-top: 5%;
    
 }
 .libros-list{
-    margin-top: 1%;
+    min-height: 96vh;
+    margin-top: 1vh;
     height: auto;
     background-color: #D9CAB9;
     display: grid;

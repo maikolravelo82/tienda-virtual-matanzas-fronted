@@ -1,11 +1,11 @@
 export interface usuario{
-    "username": String,
-    "email": String,
-    "password": String,
+    "username": string,
+    "email": string,
+    "password": string,
 }
 export interface usersend{
-  "username": String,
-  "password": String,
+  "username": string,
+  "password": string,
 }
 export interface autor{
     "nombre": string,
@@ -21,7 +21,8 @@ export interface autor{
       "preview_book": string,
       "slug": string,
       "image":string,
-      "merchant_uuid": string
+      "merchant_uuid": string,
+      "descripcion":string
   }
   export  interface Book {
     name: string;
@@ -39,7 +40,23 @@ export interface autor{
     merchant_uuid: string;
     image_url:string;
     preview_url:string;
+    descripcion:string
   }
 export interface token{
     token:string
+  }
+  export interface userObject  {
+   
+      email: string,
+      is_staff: true,
+      is_superuser: true,
+      password: string,
+      username: string
+    
+  }
+  export interface Noticia{
+    titulo:string,
+    imagen:string,
+    texto:string,
+    slug:string
   }

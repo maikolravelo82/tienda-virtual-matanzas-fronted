@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { usuario } from 'src/app/interface/Interface';
+import { userObject, usersend, usuario } from 'src/app/interface/Interface';
 import { BookService } from 'src/app/servicios/Services';
 import Swal from 'sweetalert2';
 
@@ -16,12 +16,30 @@ export class LoginComponent {
   showDiv3And4 = false;
   crearuser:FormGroup;
   loginuser:FormGroup;
+  superuserexist:userObject={
+    email: "maik@gmail.com",
+    is_staff: true,
+    is_superuser: true,
+    password: "",
+    username: ""
+  
+  }
 user:usuario={
   "username": "",
     "email": "",
     "password": "",
 }
   constructor(private formBuilder: FormBuilder, private http:HttpClient, private router:Router, private servicio:BookService){
+    const ussuario = localStorage.getItem('user');
+    if (ussuario !== null) {
+      const usercheck:usersend = JSON.parse(ussuario);
+        console.log(usercheck)
+      }
+      else{
+        console.log()
+      }
+    
+    
     this.crearuser=this.formBuilder.group({
       username: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32), ]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(32)]],
@@ -147,7 +165,8 @@ user:usuario={
        const datajson = JSON.stringify(data)
         console.log(data)
         const dataexist = JSON.parse(datajson);
-
+        const superuser:userObject[] =dataexist;
+        console.log(superuser[0].is_superuser)
 // Comprobar si existe el nombre "Maikol"
 const userExists = dataexist.some((user: { username: string }) => user.username === this.user.username);
       // Aquí puedes procesar el formulario
@@ -155,6 +174,7 @@ const userExists = dataexist.some((user: { username: string }) => user.username 
         console.log(this.user)
         this.servicio.setuser(this.user)
         localStorage.setItem('user', JSON.stringify(this.user));
+       this.servicio.clearLocalStorageAfterTime(10);
         Swal.fire({
           title: 'Datos Correctos!',
           text: 'El suario es correcto',
@@ -162,8 +182,18 @@ const userExists = dataexist.some((user: { username: string }) => user.username 
           confirmButtonText: 'Aceptar'
         }).then((result) => {
           if (result.isConfirmed) {
-            /* Aqui va tu usuario y tu contraseña del super user */
+            if(this.revisarEsSuperusuario(this.user.username,superuser)){
+              console.log("es true el super user")
+              localStorage.setItem('superuser',"true")
               this.router.navigate(['/gestionarbooks'])
+            }
+            else{
+              this.router.navigate(['/home'])
+              localStorage.setItem('superuser',"false")
+            }
+           
+            /* Aqui va tu usuario y tu contraseña del super user */
+              
             // Reiniciar los valores del formulario
            
           }
@@ -246,5 +276,17 @@ const userExists = dataexist.some((user: { username: string }) => user.username 
     this.showDiv3And4 = !this.showDiv3And4;
     this.gridTemplateColumns = this.gridTemplateColumns === '45% 55%' ? '55% 45%' : '45% 55%';
   }
-
+  revisarEsSuperusuario(username:string, usuarios:userObject[]):boolean{
+    for (let i = 0; i < usuarios.length; i++) {
+      if (usuarios[i].username === username) {
+        if (usuarios[i].is_superuser) {
+          console.log(usuarios[i].is_superuser)
+          return true;
+        } else {
+          return false;
+        }
+      }
+    }
+  return false;
+  }
 }

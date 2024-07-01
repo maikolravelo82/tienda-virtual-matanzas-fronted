@@ -1,0 +1,13 @@
+<app-nav-var></app-nav-var>
+
+<div class="libros-list" *ngIf="books.length > 0">
+    <div class="card" *ngFor="let book of filteredOptions" (click)="onBookClick(book.slug)">
+       <img [src]="book.image_url" alt="">
+       <div class="card-body">
+          <Label class="card-tittle"> {{book.price}}$</Label>
+          <div class="hr"></div>
+          <button type="button" class="btn btn-primary">Sobre...</button>
+      </div>
+  </div>
+ 
+</div>

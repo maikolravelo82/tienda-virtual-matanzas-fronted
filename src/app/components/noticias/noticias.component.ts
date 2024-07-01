@@ -1,47 +1,41 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { book } from 'src/app/interface/Interface';
+import { Noticia } from 'src/app/interface/Interface';
 import { BookService } from 'src/app/servicios/Services';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-gestionarbooks',
-  templateUrl: './gestionarbooks.component.html',
-  styleUrls: ['./gestionarbooks.component.css']
+  selector: 'app-noticias',
+  templateUrl: './noticias.component.html',
+  styleUrls: ['./noticias.component.css']
 })
-export class GestionarbooksComponent {
-
-books!:book[];
+export class NoticiasComponent {
+noticias!:Noticia[];
   constructor(private router: Router,private http:HttpClient, private servicio:BookService) {
     
-    this.http.get("http://127.0.0.1:8000/books/").subscribe(data=>{
-      this.books = Object.values(data);
+    this.http.get("http://127.0.0.1:8000/noticia/").subscribe(data=>{
+      this.noticias = Object.values(data);
       console.log(data)
-      console.log(this.books.length)
-      this.books.forEach(book => {
-    
-      });
+      console.log(this.noticias.length)
     })
     
   }
-  saveBook() {
-    
-  }
+ 
 
-  editBook(x:string) {
-       const url_delete=`http://127.0.0.1:8000/books/${x}/`
+  editnoticia(x:string) {
+       const url_delete=`http://127.0.0.1:8000/noticia/${x}/`
        this.http.delete(url_delete).subscribe(data=>{
-        this.router.navigate(['/form-book'])
+        this.router.navigate(['/noticia-form'])
         console.log(data)
           })
   }
 
-  deleteBook(x:string) {
-    const url_delete=`http://127.0.0.1:8000/books/${x}/`
+  deletenoticia(x:string) {
+    const url_delete=`http://127.0.0.1:8000/noticia/${x}/`
     Swal.fire({
-      title: 'Desea eliminar el libro',
-      text: "Se perderan todos los datos del libro",
+      title: 'Desea eliminar la noticia',
+      text: "Se perderan todos los datos de la noticia",
       icon: 'question',
       confirmButtonText: 'Aceptar',
       showCancelButton: true,

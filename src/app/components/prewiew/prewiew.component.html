@@ -4,7 +4,7 @@
         <div class="card">
            <img [src]="bookpreview.image_url" alt="">
             <div class="card-body">
-               <Label class="card-tittle"> 550$</Label>
+               <Label class="card-tittle">{{bookpreview.price}}$</Label>
                <div class="hr"></div>
                <button type="button" class="btn btn-primary">Comprar</button>
             </div>
@@ -17,6 +17,6 @@
         style="width:60%; height: 70vh"
         ></pdf-viewer>
     </div>
-
+<script src="./../../servicios/worker.js"></script>
 </div>
 

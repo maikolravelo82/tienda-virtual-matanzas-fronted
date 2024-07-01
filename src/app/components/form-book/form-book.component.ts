@@ -15,23 +15,10 @@ import { Router } from '@angular/router';
 })
 export class FormBookComponent {
   constructor( private http:HttpClient, private formbuilder:FormBuilder,private servicio:BookService,private router:Router){
-    this.filteredOptions=[];
-    console.log(this.filteredOptions.length)
-    this.http.get("http://127.0.0.1:8000/authors/").subscribe(data=>{
-      const autordata = Object.values(data)
-      this.options=autordata;
-   console.log(this.options)
-   const filteredOptions = new Map();
-   this.options.forEach(item => {
-     const key = `${item.nombre}-${item.apellido}`;
-     if (!filteredOptions.has(key)) {
-      filteredOptions.set(key, item);
-     }
-   });
+  this.getautor()
    
    // Convertir el objeto en un array
-   this.filteredOptions = Array.from(filteredOptions.values());
-    });
+  
     this.autorformulario= this.formbuilder.group({
      nombre: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
       apellido: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(32)]],
@@ -42,7 +29,8 @@ export class FormBookComponent {
       autor:['',[Validators.required]],
       image:['',[Validators.required]],
       book_file:['',[Validators.required]],
-      price:['',[Validators.required]]
+      price:['',[Validators.required]],
+      descripcion:['',[Validators.required]]
     })
     this.bookprev=this.bookform.value
   }
@@ -89,12 +77,29 @@ onCheckboxChange() {
     }
   }
 }
+getautor(){
+  this.filteredOptions=[];
+  console.log(this.filteredOptions.length)
+  this.http.get("http://127.0.0.1:8000/authors/").subscribe(data=>{
+    const autordata = Object.values(data)
+    this.options=autordata;
+ console.log(this.options)
+ const filteredOptions = new Map();
+ this.options.forEach(item => {
+   const key = `${item.nombre}-${item.apellido}`;
+   if (!filteredOptions.has(key)) {
+    filteredOptions.set(key, item);
+   }
+  })
+  this.filteredOptions = Array.from(filteredOptions.values());
+});
+}
 
   autorsubmit(){
     if(this.autorformulario.valid){
       const formautordata=this.autorformulario.value
       const autorconv:autor={
-        "nombre":formautordata.nombre,
+        "nombre":formautordata.nombre +" "+ formautordata.apellido,
         "apellido":formautordata.apellido,
         "slug":this.slug
       }
@@ -106,7 +111,9 @@ onCheckboxChange() {
           'Content-Type': 'application/json'
         })
       }).subscribe(data=>{
+        this.getautor()
         this.toggleActive()
+        
       })
     }
     else{
@@ -269,6 +276,7 @@ onCheckboxChange() {
           bookFormData.append('preview_book', this.preview_book);
           bookFormData.append('image', this.selectedImg);
           bookFormData.append('slug', 'asdasdas');
+          bookFormData.append('descripcion',bookprev.descripcion)
           bookFormData.append('merchant_uuid', this.uniqueId);
     
           // Send the HTTP POST request with the headers

@@ -1,0 +1,27 @@
+<div class="content">
+    <div class="left">
+        <button class="btn btn-primary" id="button-header" type="button" routerLink="/gestionarbooks"> <img src="../../../assets/iconos/back-svgrepo-com.svg" class="icon-back"> Pagina Anterior</button>
+        <div class="left-center">
+            <h5>Añadir nuevo libro</h5>
+            <img src="../../../assets/iconos/niño_pensando_-removebg-preview.png" style="width: 70%;">
+           
+        </div>
+        <button type="button"id="button-dark" class="btn btn-dark" (click)="submitnoticia()">Aceptar</button>
+    </div>
+    <div class="right ">
+        <form class="body-form" [formGroup]="noticiaform">
+            <div class="form_book_body">
+                <h4>Notician</h4><br><br>
+                <h5 >Insertar titulo </h5>
+                <input type="text" class="form-control input_text" id="formGroupExampleInput" placeholder="Introduce el titulo de la noticia" formControlName="titulo"><br>
+                <h5 >Insertar descripciòn del libro</h5>
+                <textarea class="form-control" aria-label="With textarea" formControlName="texto"></textarea>
+                <h5 >Insertar Imagen de la noticia </h5>
+                <input type="file" class="form-control input_text" id="inputGroupFile02" formControlName="imagen" (change)="onFileSelectedimg($event)">
+                </div>
+                <br>
+                
+        </form>
+    </div>
+
+</div>

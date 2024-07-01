@@ -13,6 +13,10 @@ import { AboutComponent } from './components/about/about.component';
 import { GestionarbooksComponent } from './components/gestionarbooks/gestionarbooks.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { NavVarComponent } from './components/nav-var/nav-var.component';
+import { NoticiasComponent } from './components/noticias/noticias.component';
+import { NoticiaFormComponent } from './components/noticia-form/noticia-form.component';
+import { BibliotecaComponent } from './components/biblioteca/biblioteca.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +26,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
     FormBookComponent,
     AboutComponent,
     GestionarbooksComponent,
+    NavVarComponent,
+    NoticiasComponent,
+    NoticiaFormComponent,
+    BibliotecaComponent,
 
   ],
   imports: [

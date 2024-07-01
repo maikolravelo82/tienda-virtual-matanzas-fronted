@@ -1,0 +1,45 @@
+
+<nav class="nav-var">
+    <div class="logo" routerLink="/home">
+    </div>
+    <div></div>
+    <div class="search">
+       <div class="input-group mb-3 ">
+         <span class="search-icon input-group-text"></span>
+          <input type="text" class="form-control "  (input)="onInputChange($event)" placeholder="Search" aria-label="Example text with button addon" aria-describedby="button-addon1" style="border-left: none; height: 2.5rem; margin-top: 0.4rem;">
+          
+        </div>
+    </div>
+    <div>
+ 
+    </div>
+    <div class="icons">
+       <div class="car-icon">
+       </div>
+       <div class="dowland-icon" ></div>
+       <div *ngIf="!usercheck" class="avatar-icon" (click)="navigateToLogin()"></div>
+       <div class="d-flex align-items-center cerrarsesion " *ngIf="usercheck">
+          <div class="user-initial rounded-circle bg-primary text-white d-flex justify-content-center align-items-center" style="width: 32px; height: 32px; " (click)="logout()">
+            <span class="font-weight-bold">{{usuario_inicial}}</span>
+          </div>
+ 
+        </div>
+    </div>
+ </nav>
+ <div class="cartel">
+    <div class="cartel-header">
+       <div class="left">
+          <button type="button" class="btn btn-primary bton-letrero">Catalogos</button>
+          <button type="button" class="btn btn-primary bton-letrero" (click)="loginsuperuser()">Noticias</button>
+       </div>
+       <div class="center">
+          <button type="button" class="btn btn-primary bton-letrero" (click)="logincheck()">Mi Biblioteca</button>
+       </div>
+       <div class="right">
+          <button type="button" class="btn btn-primary bton-letrero">Contactanos</button>
+          <button type="button" class="btn btn-primary bton-letrero" routerLink="/about">Sobre Nosotros</button>
+       </div>
+      
+    </div>
+   
+ </div>

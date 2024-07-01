@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy,Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { Noticia, usersend } from 'src/app/interface/Interface';
 import { BookService } from 'src/app/servicios/Services';
 
 declare var Swiper: any;
@@ -24,10 +25,18 @@ interface Book {
 })
 export class HomeComponent implements OnInit  {
   books!:Book[];
-  inputValue!:string;
   filteredOptions!:Book[];
+  noticias!:Noticia[];
   constructor(private router: Router,private http:HttpClient, private servicio:BookService) {
-    
+    this.http.get("http://127.0.0.1:8000/noticia/").subscribe(data=>{
+      this.noticias = Object.values(data);
+      console.log(data)
+      console.log(this.noticias.length)
+      for (let i = 0; i < this.noticias.length; i++) {
+       this.noticias[i].imagen=`http://127.0.0.1:8000/get_photo_noticia/${this.noticias[i].slug}`;
+      }
+    })
+    console.log(this.noticias)
     this.http.get("http://127.0.0.1:8000/books/").subscribe(data=>{
       this.books = Object.values(data);
       console.log(data)
@@ -43,8 +52,10 @@ export class HomeComponent implements OnInit  {
   ngOnInit(){
     
   }
-  getBookImages() {
-   
+
+  logout(){
+    localStorage.removeItem('user');
+   this.router.navigate(['/login'])
   }
   navigateToLogin() {
     this.router.navigate(['/login']);
@@ -55,13 +66,5 @@ export class HomeComponent implements OnInit  {
     this.servicio.setBookSlug(x),
     this.router.navigate(['/preview'])
   }
-  onInputChange(event: any) {
-if(this.filteredOptions.length===0){
-  this.filteredOptions=this.books
-}
-    const inputValue = event.target.value.toLowerCase();
-    this.filteredOptions = this.books.filter(option =>
-      option.name.toLowerCase().includes(inputValue.toLowerCase())
-    );
-  }
+ 
 }
