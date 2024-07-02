@@ -9,10 +9,8 @@
     grid-template-rows: 20% 60% 20%;
 }
 .right{
-    display: grid;
-    justify-items: center;
     background-color: #F1ECE5;
-    padding-top: 17vh;
+    padding: 17vh;
 }
 #button-header{
     background-color: transparent;
@@ -39,7 +37,8 @@
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     }
     .card img{
-        margin: 13%;
+        margin:0% 13% ;
+        margin-top: 3%;
         width: 75%;
         height: 75%;
     }
@@ -72,4 +71,7 @@
         width: 100%;
         margin-bottom: 2%;
         margin-top: 4%;
+      }
+      ngx-extended-pdf-viewer{
+        height: 100vh;
       }

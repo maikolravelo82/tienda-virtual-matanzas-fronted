@@ -32,22 +32,28 @@ constructor(private router:Router){
 
 }
 loginsuperuser(){
-  const userString = localStorage.getItem('superuser');
-  console.log(userString)
-  if(userString!=="false"){
-    this.router.navigate(['/noticias'])
+  const userString = localStorage.getItem('user');
+  if(userString){
+    const userStringsuper = localStorage.getItem('superuser');
+    if(userStringsuper==="true"){
+      this.router.navigate(['/noticias'])
+    }
+    else{
+      this.router.navigate(['/noticias-view'])
+    }
+
   }
   else{
     Swal.fire({
       title: 'No estas autenticado',
-      text: 'Necesitas autenticarte para acceder al panel de gestion de noticias ',
+      text: 'Necesitas autenticarte para acceder a los libros gratuitos ',
       icon: 'warning',
       confirmButtonText: 'Aceptar'
     }).then((result) => {
       if (result.isConfirmed) {
-   
+        /* Aqui va tu usuario y tu contraseña del super user */
           this.router.navigate(['/login'])
-       
+        // Reiniciar los valores del formulario
        
       }
     });
@@ -57,7 +63,14 @@ logincheck(){
   console.log("bsabhds")
   const userString = localStorage.getItem('user');
   if(userString){
- this.router.navigate(['/biblioteca'])
+    const userStringsuper = localStorage.getItem('superuser');
+    if(userStringsuper==="true"){
+      this.router.navigate(['/gestionarbooks'])
+    }
+    else{
+      this.router.navigate(['/biblioteca'])
+    }
+
   }
   else{
     Swal.fire({

@@ -185,7 +185,7 @@ const userExists = dataexist.some((user: { username: string }) => user.username 
             if(this.revisarEsSuperusuario(this.user.username,superuser)){
               console.log("es true el super user")
               localStorage.setItem('superuser',"true")
-              this.router.navigate(['/gestionarbooks'])
+              this.router.navigate(['/home'])
             }
             else{
               this.router.navigate(['/home'])

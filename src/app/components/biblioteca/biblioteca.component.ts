@@ -1,7 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Book, usersend } from 'src/app/interface/Interface';
+import { Book, usersend ,autor} from 'src/app/interface/Interface';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-biblioteca',
@@ -12,8 +13,16 @@ export class BibliotecaComponent {
   books!:Book[];
   filteredOptions!:Book[];
   booksfree!:Book[];
-
+  options:autor[]=[];
+  filteredOptionsautor:autor[] = [];
+  selectedValue: autor={
+    "nombre": "",
+    "apellido": "",
+    "slug": ""
+  };
+  freeOnly=false;
 constructor(private http:HttpClient,private router:Router){
+this.getautor()
   this.http.get("http://127.0.0.1:8000/books/").subscribe(data=>{
     this.books = Object.values(data);
     console.log(data)
@@ -65,5 +74,49 @@ onBookClick(x:string){
     // Navegar a la ruta con el encabezado
  
 }
+}
+getautor(){
+  this.filteredOptions=[];
+  this.http.get("http://127.0.0.1:8000/authors/").subscribe(data=>{
+    const autordata = Object.values(data)
+    this.options=autordata;
+ const filteredOptions = new Map();
+ this.options.forEach(item => {
+   const key = `${item.nombre}-${item.apellido}`;
+   if (!filteredOptions.has(key)) {
+    filteredOptions.set(key, item);
+   }
+  })
+  this.filteredOptionsautor = Array.from(filteredOptions.values());
+});
+}
+onFreeFilter(){
+  this.freeOnly = !this.freeOnly;
+  if(this.freeOnly){
+    this.filteredOptions = this.books.filter(book => book.price === 0);
+  }
+  else{
+  this.filteredOptions=this.books
+  this.onAuthorFilter
+  }
+  
+}
+onAuthorFilter(event: Event) {
+  const selectedAuthor = (event.target as HTMLSelectElement).value;
+  console.log(selectedAuthor)
+  this.filteredOptions = this.books.filter(book => book.autor === selectedAuthor);
+ if(this.filteredOptions.length===0){
+  Swal.fire({
+    title:'Error',
+    text:'No se encontraron resultados',
+    icon: 'error',
+  confirmButtonText: 'Aceptar'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Reiniciar los valores del formulario
+      this.filteredOptions=this.books
+    }
+  });
+ }
 }
 }

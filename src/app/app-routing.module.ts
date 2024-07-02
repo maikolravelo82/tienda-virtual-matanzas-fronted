@@ -9,6 +9,9 @@ import { GestionarbooksComponent } from './components/gestionarbooks/gestionarbo
 import { NoticiasComponent } from './components/noticias/noticias.component';
 import { NoticiaFormComponent } from './components/noticia-form/noticia-form.component';
 import { BibliotecaComponent } from './components/biblioteca/biblioteca.component';
+import { ContactanosComponent } from './components/contactanos/contactanos.component';
+import { NoticiasViewComponent } from './components/noticias-view/noticias-view.component';
+import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
 
 const routes: Routes = [
   {
@@ -51,6 +54,18 @@ const routes: Routes = [
   {
     path:'biblioteca',
     component:BibliotecaComponent
+  },
+  {
+    path:'contactanos',
+    component:ContactanosComponent
+  },
+  {
+    path:'noticias-view',
+    component:NoticiasViewComponent
+  },
+  {
+    path:'example',
+    component:ExamplePdfViewerComponent
   }
 ];
 

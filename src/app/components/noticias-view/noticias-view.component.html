@@ -1,0 +1,12 @@
+<app-nav-var></app-nav-var>
+<div class="magazine-container">
+    <div class="magazine-item" *ngFor="let noticia of noticias">
+      <div class="magazine-image">
+        <img [src]="noticia.imagen" [alt]="noticia.titulo">
+      </div>
+      <div class="magazine-content">
+        <h3 class="magazine-title">{{ noticia.titulo }}</h3>
+        <p class="magazine-text">{{ noticia.texto }}</p>
+      </div>
+    </div>
+  </div>

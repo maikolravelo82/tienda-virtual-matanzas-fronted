@@ -1,20 +1,20 @@
 .content{
     margin: 3vh;
-    height: 94vh;
+    height: 54vh;
     display: grid;
     grid-template-columns: 55% 45%;
-    grid-template-rows: 14vh 80vh;
+    grid-template-rows: 8vh 60vh;
 }
 .left{
     margin-right: 4%;
 }
-h6{
+h4{
     grid-column-start: 1;
     grid-column-end: 3;
     align-self: center;
 }
 img{
-    height: 80vh;
+    height: 60vh;
 }
 .carousel-control-next {
     margin-right: 0%;

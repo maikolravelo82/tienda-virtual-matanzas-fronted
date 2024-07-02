@@ -11,12 +11,14 @@
          </div>
     </div>
     <div class="right">
-        <pdf-viewer [src]=" this.bookpreview.preview_url"
+        <ngx-extended-pdf-viewer [src]="this.bookpreview.preview_url">
+        </ngx-extended-pdf-viewer>
+     <!-- <pdf-viewer [src]=" this.bookpreview.preview_url"
         [render-text]="false"
         [original-size]="false"
         style="width:60%; height: 70vh"
-        ></pdf-viewer>
+        ></pdf-viewer> -->  
     </div>
-<script src="./../../servicios/worker.js"></script>
+   
 </div>
 

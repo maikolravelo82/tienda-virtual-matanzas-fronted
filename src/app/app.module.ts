@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +17,10 @@ import { NavVarComponent } from './components/nav-var/nav-var.component';
 import { NoticiasComponent } from './components/noticias/noticias.component';
 import { NoticiaFormComponent } from './components/noticia-form/noticia-form.component';
 import { BibliotecaComponent } from './components/biblioteca/biblioteca.component';
+import { ContactanosComponent } from './components/contactanos/contactanos.component';
+import { NoticiasViewComponent } from './components/noticias-view/noticias-view.component';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+import { ExamplePdfViewerComponent } from './example-pdf-viewer/example-pdf-viewer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +34,9 @@ import { BibliotecaComponent } from './components/biblioteca/biblioteca.componen
     NoticiasComponent,
     NoticiaFormComponent,
     BibliotecaComponent,
+    ContactanosComponent,
+    NoticiasViewComponent,
+    ExamplePdfViewerComponent,
 
   ],
   imports: [
@@ -40,8 +47,10 @@ import { BibliotecaComponent } from './components/biblioteca/biblioteca.componen
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    NgSelectModule
+    NgSelectModule,
+    NgxExtendedPdfViewerModule
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })
